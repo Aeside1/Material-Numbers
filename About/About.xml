@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Material Numbers</name>
+  <author>Material Numbers contributors</author>
+  <packageId>materialnumbers.core</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Build configurable material comparison tables from every loaded stuff definition. Columns include base stats, stuff factors, stuff offsets, and safely discoverable stat containers supplied by other mods.</description>
+</ModMetaData>

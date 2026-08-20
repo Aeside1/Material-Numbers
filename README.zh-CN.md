@@ -2,7 +2,24 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Material Numbers 是一款面向 RimWorld 1.6 的材料对比 Mod。它会将游戏及其他 Mod 已加载的材料整理为可搜索、可排序的表格，并允许玩家自由选择属性列、调整布局和保存全局预设。
+Material Numbers 是一款面向 RimWorld 1.6 的材料对比 Mod，设计思路参考并结合了 [Stuff List (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2798767227) 和 [Numbers](https://steamcommunity.com/sharedfiles/filedetails/?id=1414302321)：它像 Stuff List 一样集中列出游戏及其他 Mod 已加载的材料，又像 Numbers 一样允许玩家自由选择属性列、排序数据、调整表格布局并保存预设。Material Numbers 是独立实现，不需要安装这两个 Mod。
+
+## 设计参考
+
+- [Stuff List (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2798767227)：提供了“把大量材料集中到同一张表中进行横向比较”的核心使用场景。
+- [Numbers](https://steamcommunity.com/sharedfiles/filedetails/?id=1414302321)：提供了“由玩家选择列、排序数据和保存常用视图”的表格交互思路。
+
+Material Numbers 将两种思路用于材料管理，并重新实现了属性发现、材料分类、倍率语义和全局预设系统。以上项目仅为设计参考，不是本 Mod 的前置依赖。
+
+## 快速上手
+
+1. 打开游戏底部的“材料”主标签。
+2. 从左上角选择一套内置预设，例如“建造”“护甲与衣物”或“采集与生产”。
+3. 使用第二行按钮限定材料大类和库存范围，例如“金属 + 当前地图”。
+4. 点击“选择列”添加或移除需要比较的属性；点击列标题进行排序，拖动标题调整顺序或宽度。
+5. 调整满意后点击“保存”。内置预设会提示另存为自定义预设，之后可在所有存档中继续使用。
+
+表头中的 `=`、`×`、`+` 分别代表基础值、材料倍率和材料加成。第一次使用时先选一个接近目标的内置预设，再少量增删列，通常比从空白表格开始更方便。
 
 ## 主要功能
 

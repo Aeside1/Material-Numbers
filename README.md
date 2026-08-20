@@ -2,7 +2,24 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Material Numbers is a RimWorld 1.6 material comparison tab with configurable columns and global named presets.
+Material Numbers is a RimWorld 1.6 material comparison mod inspired by the complementary ideas behind [Stuff List (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2798767227) and [Numbers](https://steamcommunity.com/sharedfiles/filedetails/?id=1414302321). It gathers loaded materials into one place like Stuff List, while offering Numbers-style column selection, sorting, layout customization, and saved presets. It is an independent implementation and does not require either mod.
+
+## Design references
+
+- [Stuff List (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2798767227) established the core use case of comparing many materials side by side in one table.
+- [Numbers](https://steamcommunity.com/sharedfiles/filedetails/?id=1414302321) inspired the player-configurable columns, sorting, and reusable-view workflow.
+
+Material Numbers applies those ideas specifically to material management and independently implements stat discovery, material grouping, value semantics, and global presets. These mods are references, not dependencies.
+
+## Quick start
+
+1. Open the **Materials** main tab.
+2. Choose a built-in preset such as Construction, Armor and Apparel, or Gathering and Production.
+3. Narrow the table by material group and inventory scope, for example Metals + On map.
+4. Use **Columns** to choose properties. Click a header to sort; drag headers to reorder or resize them.
+5. Save the result. Changes to a built-in preset are saved as a new global custom preset.
+
+Column markers `=`, `×`, and `+` identify base values, material factors, and material offsets.
 
 ## Features
 

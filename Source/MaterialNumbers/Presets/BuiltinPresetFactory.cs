@@ -10,6 +10,7 @@ namespace MaterialNumbers.Presets
         public const string ConstructionId = "builtin-construction";
         public const string ApparelId = "builtin-apparel";
         public const string ToolsId = "builtin-tools";
+        public const string WeaponsId = "builtin-weapons";
         public const string ComfortId = "builtin-comfort";
         public const string EconomyId = "builtin-economy";
 
@@ -47,9 +48,8 @@ namespace MaterialNumbers.Presets
                 CreateSorted(
                     ApparelId,
                     "MaterialNumbers.Preset.Apparel".Translate(),
-                    Factor("ArmorRating_Sharp"),
+                    Factor("MaxHitPoints"),
                     MaterialColumnIds.Amount,
-                    Base("Mass"),
                     Factor("MaxHitPoints"),
                     Factor("ArmorRating_Sharp"),
                     Factor("ArmorRating_Blunt"),
@@ -58,12 +58,23 @@ namespace MaterialNumbers.Presets
                     Factor("Insulation_Heat"),
                     Factor("WornBulk"),
                     Factor("MoveSpeed"),
-                    Factor("Beauty")),
+                    Factor("Beauty"),
+                    Base("StuffPower_Armor_Sharp"),
+                    Base("StuffPower_Armor_Heat"),
+                    Base("StuffPower_Armor_Blunt"),
+                    Base("StuffPower_Insulation_Cold"),
+                    Base("StuffPower_Insulation_Heat"),
+                    Factor("WorkToMake"),
+                    Factor("EquipDelay"),
+                    Factor("Mass")),
                 CreateSorted(
                     ToolsId,
                     "MaterialNumbers.Preset.Tools".Translate(),
-                    Tool("MiningSpeed"),
+                    Factor("WorkToMake"),
                     MaterialColumnIds.Amount,
+                    Factor("Mass"),
+                    Factor("MaxHitPoints"),
+                    Factor("WorkToMake"),
                     Tool("MiningSpeed"),
                     Tool("MiningYieldDigging"),
                     Tool("TreeFellingSpeed"),
@@ -72,7 +83,20 @@ namespace MaterialNumbers.Presets
                     Tool("ConstructionSpeed"),
                     Tool("SmithingSpeed"),
                     Tool("CookSpeed"),
-                    Tool("ButcheryFleshSpeed")),
+                    Tool("ButcheryFleshSpeed"),
+                    Factor("WorkTableWorkSpeedFactor")),
+                CreateSorted(
+                    WeaponsId,
+                    "MaterialNumbers.Preset.Weapons".Translate(),
+                    Base("SharpDamageMultiplier"),
+                    MaterialColumnIds.Amount,
+                    Factor("Mass"),
+                    Factor("MeleePenetrationFactor"),
+                    Base("SharpDamageMultiplier"),
+                    Base("BluntDamageMultiplier"),
+                    Factor("WorkToMake"),
+                    Factor("MaxHitPoints"),
+                    Factor("MeleeWeapon_CooldownMultiplier")),
                 CreateSorted(
                     ComfortId,
                     "MaterialNumbers.Preset.Comfort".Translate(),

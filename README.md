@@ -30,7 +30,7 @@ Column markers `=`, `×`, and `+` identify base values, material factors, and ma
 - Recognizes `SurvivalToolsLite.StuffPropsTool.toolStatFactors` without a hard dependency and groups those columns as tool stats.
 - Supports searchable columns, horizontal and vertical scrolling, sorting, column removal, drag reordering, and width adjustment.
 - Filters by compact material groups, current map availability, or valid storage. The default Common materials view excludes unclassified stuff-like definitions; All definitions remains available for troubleshooting unusual mods.
-- Provides six built-in layouts for overview, construction, armor/apparel, gathering/production, comfort/rest, and trade/stock, plus global user presets.
+- Provides seven built-in layouts for overview, construction, armor/apparel, gathering/production, weapon crafting, comfort/rest, and trade/stock, plus global user presets.
 
 Missing factor and offset values use their neutral values (`100%` and `0`) and are shown in gray. Other missing values remain blank (`-`). Column IDs from temporarily absent mods remain in saved presets and become visible again when their source mod returns.
 

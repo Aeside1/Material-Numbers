@@ -23,6 +23,9 @@ internal static class Program
         Run("missing values always sort last", MissingValuesAlwaysSortLast);
         Run("numeric and text values sort deterministically", ValuesSortDeterministically);
         Run("safe extension containers are classified", SafeContainersAreClassified);
+        Run("material categories collapse into broad groups", MaterialCategoriesCollapseIntoBroadGroups);
+        Run("material factor values use multiplier presentation", MaterialFactorsUseMultiplierPresentation);
+        Run("material stat source markers distinguish columns", MaterialStatSourceMarkersDistinguishColumns);
 
         Console.WriteLine(failures == 0
             ? "All Material Numbers logic tests passed."
@@ -104,6 +107,39 @@ internal static class Program
         False(ExtensionContainerClassifier.IsEnumerableContainer(typeof(string)));
     }
 
+    private static void MaterialCategoriesCollapseIntoBroadGroups()
+    {
+        Equal(MaterialGroup.Metal, MaterialGroupClassifier.Classify(new[] { "StrongMetallic", "RuggedMetallic" }));
+        Equal(MaterialGroup.Stone, MaterialGroupClassifier.Classify(new[] { "Stony", "Metallic" }));
+        Equal(MaterialGroup.Wood, MaterialGroupClassifier.Classify(new[] { "HardwoodLumber" }));
+        Equal(MaterialGroup.TextileLeather, MaterialGroupClassifier.Classify(new[] { "Fabric", "HF" }));
+        Equal(MaterialGroup.TextileLeather, MaterialGroupClassifier.Classify(new[] { "HF" }));
+        Equal(MaterialGroup.Metal, MaterialGroupClassifier.Classify(new[] { "Metallic", "HF" }));
+        Equal(MaterialGroup.PlasticGlass, MaterialGroupClassifier.Classify(new[] { "Plastic", "StrongMetallic" }));
+        Equal(MaterialGroup.Metal, MaterialGroupClassifier.Classify(new[] { "Matty" }, new[] { "ResourcesRaw" }, "Bioferrite"));
+        Equal(MaterialGroup.Metal, MaterialGroupClassifier.Classify(Array.Empty<string>(), new[] { "HCM" }, "Copper"));
+        Equal(MaterialGroup.PlasticGlass, MaterialGroupClassifier.Classify(Array.Empty<string>(), new[] { "Chemical" }, "Nylon"));
+        Equal(MaterialGroup.Other, MaterialGroupClassifier.Classify(new[] { "Matty" }, new[] { "WeaponParts" }, "Weapon_Parts"));
+        Equal(MaterialGroup.Other, MaterialGroupClassifier.Classify(new[] { "Matty" }));
+        Equal(MaterialGroup.Other, MaterialGroupClassifier.Classify(new[] { "Foods", "Stuff" }));
+        Equal(MaterialGroup.Other, MaterialGroupClassifier.Classify(Array.Empty<string>()));
+    }
+
+    private static void MaterialFactorsUseMultiplierPresentation()
+    {
+        Equal("100%", MaterialStatPresentation.FormatFactor(1f));
+        Equal("150%", MaterialStatPresentation.FormatFactor(1.5f));
+        Equal("400%", MaterialStatPresentation.FormatFactor(4f));
+        Equal("85.5%", MaterialStatPresentation.FormatFactor(0.855f));
+    }
+
+    private static void MaterialStatSourceMarkersDistinguishColumns()
+    {
+        Equal("Rest effectiveness =", MaterialStatPresentation.AddMarker("Rest effectiveness", "="));
+        Equal("Rest effectiveness x", MaterialStatPresentation.AddMarker("Rest effectiveness", "x"));
+        Equal("Beauty +", MaterialStatPresentation.AddMarker("Beauty", "+"));
+    }
+
     private static void Run(string name, Action test)
     {
         try
@@ -121,6 +157,14 @@ internal static class Program
     private static void Equal(string expected, string actual)
     {
         if (!string.Equals(expected, actual, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException("Expected '" + expected + "' but got '" + actual + "'.");
+        }
+    }
+
+    private static void Equal(MaterialGroup expected, MaterialGroup actual)
+    {
+        if (expected != actual)
         {
             throw new InvalidOperationException("Expected '" + expected + "' but got '" + actual + "'.");
         }

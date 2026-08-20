@@ -19,6 +19,7 @@ namespace MaterialNumbers.Discovery
                     MaterialColumnIds.StatBase(stat.defName),
                     stat,
                     "MaterialNumbers.Group.BaseStats".Translate(),
+                    "MaterialNumbers.ColumnMarker.Base".Translate(),
                     material => ReadBase(material, capturedStat));
             }
 
@@ -29,6 +30,7 @@ namespace MaterialNumbers.Discovery
                     MaterialColumnIds.StuffFactor(stat.defName),
                     stat,
                     "MaterialNumbers.Group.StuffFactors".Translate(),
+                    "MaterialNumbers.ColumnMarker.Factor".Translate(),
                     material => ReadFactor(material, capturedStat));
             }
 
@@ -39,6 +41,7 @@ namespace MaterialNumbers.Discovery
                     MaterialColumnIds.StuffOffset(stat.defName),
                     stat,
                     "MaterialNumbers.Group.StuffOffsets".Translate(),
+                    "MaterialNumbers.ColumnMarker.Offset".Translate(),
                     material => ReadOffset(material, capturedStat));
             }
         }
@@ -60,11 +63,12 @@ namespace MaterialNumbers.Discovery
             string id,
             StatDef stat,
             string group,
+            string marker,
             System.Func<ThingDef, MaterialCellValue> reader)
         {
             return new MaterialColumnDefinition(
                 id,
-                stat.LabelCap.ToString(),
+                MaterialStatPresentation.AddMarker(stat.LabelCap.ToString(), marker),
                 stat.description,
                 group,
                 stat.modContentPack?.Name ?? "RimWorld",
@@ -82,8 +86,8 @@ namespace MaterialNumbers.Discovery
         private static MaterialCellValue ReadFactor(ThingDef material, StatDef stat)
         {
             return TryGet(material.stuffProps?.statFactors, stat, out float value)
-                ? Explicit(stat, value)
-                : Neutral(stat, 1f);
+                ? ExplicitFactor(value)
+                : NeutralFactor(1f);
         }
 
         private static MaterialCellValue ReadOffset(ThingDef material, StatDef stat)
@@ -121,6 +125,20 @@ namespace MaterialNumbers.Discovery
             return new MaterialCellValue(
                 value,
                 StatValueFormatter.Format(stat, value),
+                false,
+                "MaterialNumbers.Value.Neutral".Translate());
+        }
+
+        private static MaterialCellValue ExplicitFactor(float value)
+        {
+            return new MaterialCellValue(value, MaterialStatPresentation.FormatFactor(value), true);
+        }
+
+        private static MaterialCellValue NeutralFactor(float value)
+        {
+            return new MaterialCellValue(
+                value,
+                MaterialStatPresentation.FormatFactor(value),
                 false,
                 "MaterialNumbers.Value.Neutral".Translate());
         }

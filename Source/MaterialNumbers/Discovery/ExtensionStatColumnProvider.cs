@@ -27,7 +27,7 @@ namespace MaterialNumbers.Discovery
                     StatDef capturedStat = stat;
                     yield return new MaterialColumnDefinition(
                         MaterialColumnIds.Extension(accessor.ExtensionType.FullName, accessor.Member.Name, stat.defName),
-                        stat.LabelCap.ToString(),
+                        MaterialStatPresentation.AddMarker(stat.LabelCap.ToString(), MarkerFor(accessor.Semantic)),
                         stat.description,
                         accessor.Group,
                         accessor.Source,
@@ -157,7 +157,7 @@ namespace MaterialNumbers.Discovery
                 {
                     return new MaterialCellValue(
                         pair.Value,
-                        StatValueFormatter.Format(stat, pair.Value),
+                        FormatValue(accessor.Semantic, stat, pair.Value),
                         true);
                 }
             }
@@ -166,7 +166,7 @@ namespace MaterialNumbers.Discovery
             {
                 return new MaterialCellValue(
                     1f,
-                    StatValueFormatter.Format(stat, 1f),
+                    MaterialStatPresentation.FormatFactor(1f),
                     false,
                     "MaterialNumbers.Value.Neutral".Translate());
             }
@@ -181,6 +181,26 @@ namespace MaterialNumbers.Discovery
             }
 
             return MaterialCellValue.Missing;
+        }
+
+        private static string MarkerFor(ExtensionSemantic semantic)
+        {
+            switch (semantic)
+            {
+                case ExtensionSemantic.Factor:
+                    return "MaterialNumbers.ColumnMarker.Factor".Translate();
+                case ExtensionSemantic.Offset:
+                    return "MaterialNumbers.ColumnMarker.Offset".Translate();
+                default:
+                    return null;
+            }
+        }
+
+        private static string FormatValue(ExtensionSemantic semantic, StatDef stat, float value)
+        {
+            return semantic == ExtensionSemantic.Factor
+                ? MaterialStatPresentation.FormatFactor(value)
+                : StatValueFormatter.Format(stat, value);
         }
 
         private IEnumerable<StatValuePair> EnumerateValues(ThingDef material, ExtensionMemberAccessor accessor)

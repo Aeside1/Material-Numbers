@@ -10,6 +10,9 @@
   <MaterialNumbers.Group.StuffOffsets>材料偏移</MaterialNumbers.Group.StuffOffsets>
   <MaterialNumbers.Group.ToolStats>工具属性</MaterialNumbers.Group.ToolStats>
   <MaterialNumbers.Group.ModExtensions>其他 Mod 扩展</MaterialNumbers.Group.ModExtensions>
+  <MaterialNumbers.ColumnMarker.Base>=</MaterialNumbers.ColumnMarker.Base>
+  <MaterialNumbers.ColumnMarker.Factor>×</MaterialNumbers.ColumnMarker.Factor>
+  <MaterialNumbers.ColumnMarker.Offset>+</MaterialNumbers.ColumnMarker.Offset>
 
   <MaterialNumbers.Column.Material>材料</MaterialNumbers.Column.Material>
   <MaterialNumbers.Column.Amount>数量</MaterialNumbers.Column.Amount>
@@ -21,8 +24,10 @@
 
   <MaterialNumbers.Preset.Overview>概览</MaterialNumbers.Preset.Overview>
   <MaterialNumbers.Preset.Construction>建造</MaterialNumbers.Preset.Construction>
-  <MaterialNumbers.Preset.Apparel>衣物</MaterialNumbers.Preset.Apparel>
-  <MaterialNumbers.Preset.Tools>工具</MaterialNumbers.Preset.Tools>
+  <MaterialNumbers.Preset.Apparel>护甲与衣物</MaterialNumbers.Preset.Apparel>
+  <MaterialNumbers.Preset.Tools>采集与生产</MaterialNumbers.Preset.Tools>
+  <MaterialNumbers.Preset.Comfort>舒适与睡眠</MaterialNumbers.Preset.Comfort>
+  <MaterialNumbers.Preset.Economy>交易与库存</MaterialNumbers.Preset.Economy>
 
   <MaterialNumbers.Action.Columns>选择列</MaterialNumbers.Action.Columns>
   <MaterialNumbers.Action.Save>保存</MaterialNumbers.Action.Save>
@@ -38,9 +43,15 @@
   <MaterialNumbers.Columns.Selected>已选择 {0}/{1} 列</MaterialNumbers.Columns.Selected>
 
   <MaterialNumbers.Filter.SearchTip>按材料名称、defName 或来源 Mod 搜索。</MaterialNumbers.Filter.SearchTip>
-  <MaterialNumbers.Filter.AllCategories>全部分类</MaterialNumbers.Filter.AllCategories>
-  <MaterialNumbers.Filter.CategoryCount>已选 {0} 个分类</MaterialNumbers.Filter.CategoryCount>
-  <MaterialNumbers.Filter.AllLoaded>全部材料</MaterialNumbers.Filter.AllLoaded>
+  <MaterialNumbers.Filter.Group.Common>常用材料</MaterialNumbers.Filter.Group.Common>
+  <MaterialNumbers.Filter.Group.All>全部定义</MaterialNumbers.Filter.Group.All>
+  <MaterialNumbers.Filter.Group.Metal>金属</MaterialNumbers.Filter.Group.Metal>
+  <MaterialNumbers.Filter.Group.Stone>石材与陶瓷</MaterialNumbers.Filter.Group.Stone>
+  <MaterialNumbers.Filter.Group.Wood>木材</MaterialNumbers.Filter.Group.Wood>
+  <MaterialNumbers.Filter.Group.TextileLeather>织物与皮革</MaterialNumbers.Filter.Group.TextileLeather>
+  <MaterialNumbers.Filter.Group.PlasticGlass>塑料与玻璃</MaterialNumbers.Filter.Group.PlasticGlass>
+  <MaterialNumbers.Filter.Group.Other>其他定义</MaterialNumbers.Filter.Group.Other>
+  <MaterialNumbers.Filter.AllLoaded>全部已加载</MaterialNumbers.Filter.AllLoaded>
   <MaterialNumbers.Filter.CurrentMap>当前地图</MaterialNumbers.Filter.CurrentMap>
   <MaterialNumbers.Filter.CurrentStorage>当前储存区</MaterialNumbers.Filter.CurrentStorage>
 

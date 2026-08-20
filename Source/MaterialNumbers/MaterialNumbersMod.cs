@@ -32,7 +32,7 @@ namespace MaterialNumbers
             if (listing.ButtonText("MaterialNumbers.Settings.ResetFilters".Translate()))
             {
                 Settings.AvailabilityMode = MaterialAvailabilityMode.AllLoaded;
-                Settings.SelectedCategoryDefNames.Clear();
+                Settings.GroupFilter = MaterialGroupFilter.Common;
                 WriteSettings();
             }
 

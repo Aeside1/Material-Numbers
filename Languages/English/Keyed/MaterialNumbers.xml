@@ -10,6 +10,9 @@
   <MaterialNumbers.Group.StuffOffsets>Material offsets</MaterialNumbers.Group.StuffOffsets>
   <MaterialNumbers.Group.ToolStats>Tool stats</MaterialNumbers.Group.ToolStats>
   <MaterialNumbers.Group.ModExtensions>Other mod extensions</MaterialNumbers.Group.ModExtensions>
+  <MaterialNumbers.ColumnMarker.Base>=</MaterialNumbers.ColumnMarker.Base>
+  <MaterialNumbers.ColumnMarker.Factor>×</MaterialNumbers.ColumnMarker.Factor>
+  <MaterialNumbers.ColumnMarker.Offset>+</MaterialNumbers.ColumnMarker.Offset>
 
   <MaterialNumbers.Column.Material>Material</MaterialNumbers.Column.Material>
   <MaterialNumbers.Column.Amount>Amount</MaterialNumbers.Column.Amount>
@@ -21,8 +24,10 @@
 
   <MaterialNumbers.Preset.Overview>Overview</MaterialNumbers.Preset.Overview>
   <MaterialNumbers.Preset.Construction>Construction</MaterialNumbers.Preset.Construction>
-  <MaterialNumbers.Preset.Apparel>Apparel</MaterialNumbers.Preset.Apparel>
-  <MaterialNumbers.Preset.Tools>Tools</MaterialNumbers.Preset.Tools>
+  <MaterialNumbers.Preset.Apparel>Armor and apparel</MaterialNumbers.Preset.Apparel>
+  <MaterialNumbers.Preset.Tools>Gathering and production</MaterialNumbers.Preset.Tools>
+  <MaterialNumbers.Preset.Comfort>Comfort and rest</MaterialNumbers.Preset.Comfort>
+  <MaterialNumbers.Preset.Economy>Trade and stock</MaterialNumbers.Preset.Economy>
 
   <MaterialNumbers.Action.Columns>Columns</MaterialNumbers.Action.Columns>
   <MaterialNumbers.Action.Save>Save</MaterialNumbers.Action.Save>
@@ -38,8 +43,14 @@
   <MaterialNumbers.Columns.Selected>{0} of {1} columns selected</MaterialNumbers.Columns.Selected>
 
   <MaterialNumbers.Filter.SearchTip>Search materials by name, defName, or source mod.</MaterialNumbers.Filter.SearchTip>
-  <MaterialNumbers.Filter.AllCategories>All categories</MaterialNumbers.Filter.AllCategories>
-  <MaterialNumbers.Filter.CategoryCount>{0} categories</MaterialNumbers.Filter.CategoryCount>
+  <MaterialNumbers.Filter.Group.Common>Common materials</MaterialNumbers.Filter.Group.Common>
+  <MaterialNumbers.Filter.Group.All>All definitions</MaterialNumbers.Filter.Group.All>
+  <MaterialNumbers.Filter.Group.Metal>Metals</MaterialNumbers.Filter.Group.Metal>
+  <MaterialNumbers.Filter.Group.Stone>Stone and ceramics</MaterialNumbers.Filter.Group.Stone>
+  <MaterialNumbers.Filter.Group.Wood>Wood</MaterialNumbers.Filter.Group.Wood>
+  <MaterialNumbers.Filter.Group.TextileLeather>Textiles and leather</MaterialNumbers.Filter.Group.TextileLeather>
+  <MaterialNumbers.Filter.Group.PlasticGlass>Plastics and glass</MaterialNumbers.Filter.Group.PlasticGlass>
+  <MaterialNumbers.Filter.Group.Other>Other definitions</MaterialNumbers.Filter.Group.Other>
   <MaterialNumbers.Filter.AllLoaded>All loaded</MaterialNumbers.Filter.AllLoaded>
   <MaterialNumbers.Filter.CurrentMap>On map</MaterialNumbers.Filter.CurrentMap>
   <MaterialNumbers.Filter.CurrentStorage>In storage</MaterialNumbers.Filter.CurrentStorage>

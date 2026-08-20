@@ -14,5 +14,7 @@
     <Compile Include="../../Source/MaterialNumbers/Core/MaterialCellValue.cs" Link="Core/MaterialCellValue.cs" />
     <Compile Include="../../Source/MaterialNumbers/Core/MaterialCellValueComparer.cs" Link="Core/MaterialCellValueComparer.cs" />
     <Compile Include="../../Source/MaterialNumbers/Core/MaterialColumnIds.cs" Link="Core/MaterialColumnIds.cs" />
+    <Compile Include="../../Source/MaterialNumbers/Core/MaterialGroupClassifier.cs" Link="Core/MaterialGroupClassifier.cs" />
+    <Compile Include="../../Source/MaterialNumbers/Core/MaterialStatPresentation.cs" Link="Core/MaterialStatPresentation.cs" />
   </ItemGroup>
 </Project>

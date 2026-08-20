@@ -6,13 +6,14 @@ Material Numbers is a RimWorld 1.6 material comparison tab with configurable col
 
 - Discovers every loaded `ThingDef` where `IsStuff` is true.
 - Builds columns from material base stats, factors, and offsets.
+- Marks base, factor, and offset columns with `=`, `×`, and `+`, respectively, and formats every factor as a percentage.
 - Safely discovers direct `IEnumerable<StatModifier>` and `IDictionary<StatDef, float>` containers on mod extensions.
 - Recognizes `SurvivalToolsLite.StuffPropsTool.toolStatFactors` without a hard dependency and groups those columns as tool stats.
 - Supports searchable columns, horizontal and vertical scrolling, sorting, column removal, drag reordering, and width adjustment.
-- Filters by material category, current map availability, or valid storage.
-- Provides four built-in layouts and global user presets.
+- Filters by compact material groups, current map availability, or valid storage. The default Common materials view excludes unclassified stuff-like definitions; All definitions remains available for troubleshooting unusual mods.
+- Provides six built-in layouts for overview, construction, armor/apparel, gathering/production, comfort/rest, and trade/stock, plus global user presets.
 
-Missing factor and offset values use their neutral values (`1` and `0`) and are shown in gray. Other missing values remain blank (`-`). Column IDs from temporarily absent mods remain in saved presets and become visible again when their source mod returns.
+Missing factor and offset values use their neutral values (`100%` and `0`) and are shown in gray. Other missing values remain blank (`-`). Column IDs from temporarily absent mods remain in saved presets and become visible again when their source mod returns.
 
 ## Build
 

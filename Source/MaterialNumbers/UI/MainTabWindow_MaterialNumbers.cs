@@ -126,9 +126,9 @@ namespace MaterialNumbers.UI
 
             y += 36f;
             x = rect.x + padding;
-            if (Widgets.ButtonText(new Rect(x, y, 190f, 30f), CategoryButtonLabel()))
+            if (Widgets.ButtonText(new Rect(x, y, 190f, 30f), GroupButtonLabel()))
             {
-                OpenCategoryMenu();
+                OpenGroupMenu();
             }
 
             x += 204f;
@@ -403,11 +403,10 @@ namespace MaterialNumbers.UI
 
         private List<MaterialRow> FilterAndSortRows()
         {
-            var selectedCategories = new HashSet<string>(MaterialNumbersMod.Settings.SelectedCategoryDefNames, StringComparer.Ordinal);
             string term = search.Trim();
             List<MaterialRow> rows = dataset.Rows.Where(row =>
                     MatchesSearch(row.Material, term) &&
-                    MatchesCategories(row.Material, selectedCategories) &&
+                    MatchesGroup(row.Material, MaterialNumbersMod.Settings.GroupFilter) &&
                     MatchesAvailability(row.Material))
                 .ToList();
             rows.Sort(CompareRows);
@@ -426,15 +425,34 @@ namespace MaterialNumbers.UI
                    Contains(material.modContentPack?.Name, term);
         }
 
-        private static bool MatchesCategories(ThingDef material, HashSet<string> categories)
+        private static bool MatchesGroup(ThingDef material, MaterialGroupFilter filter)
         {
-            if (categories.Count == 0)
+            if (filter == MaterialGroupFilter.All)
             {
                 return true;
             }
 
-            return material.stuffProps?.categories != null &&
-                   material.stuffProps.categories.Any(category => category != null && categories.Contains(category.defName));
+            MaterialGroup group = MaterialGroupClassifier.Classify(
+                material.stuffProps?.categories?.Where(category => category != null).Select(category => category.defName),
+                material.thingCategories?.Where(category => category != null).Select(category => category.defName),
+                material.defName);
+            switch (filter)
+            {
+                case MaterialGroupFilter.Metal:
+                    return group == MaterialGroup.Metal;
+                case MaterialGroupFilter.Stone:
+                    return group == MaterialGroup.Stone;
+                case MaterialGroupFilter.Wood:
+                    return group == MaterialGroup.Wood;
+                case MaterialGroupFilter.TextileLeather:
+                    return group == MaterialGroup.TextileLeather;
+                case MaterialGroupFilter.PlasticGlass:
+                    return group == MaterialGroup.PlasticGlass;
+                case MaterialGroupFilter.Other:
+                    return group == MaterialGroup.Other;
+                default:
+                    return group != MaterialGroup.Other;
+            }
         }
 
         private bool MatchesAvailability(ThingDef material)
@@ -730,51 +748,51 @@ namespace MaterialNumbers.UI
             LoadPreset(workingPreset.Id);
         }
 
-        private string CategoryButtonLabel()
+        private string GroupButtonLabel()
         {
-            int count = MaterialNumbersMod.Settings.SelectedCategoryDefNames.Count;
-            return count == 0
-                ? "MaterialNumbers.Filter.AllCategories".Translate()
-                : "MaterialNumbers.Filter.CategoryCount".Translate(count);
+            return GroupLabel(MaterialNumbersMod.Settings.GroupFilter);
         }
 
-        private void OpenCategoryMenu()
+        private void OpenGroupMenu()
         {
-            var options = new List<FloatMenuOption>
+            var options = new List<FloatMenuOption>();
+            foreach (MaterialGroupFilter filter in Enum.GetValues(typeof(MaterialGroupFilter)))
             {
-                new FloatMenuOption("MaterialNumbers.Filter.AllCategories".Translate(), () =>
-                {
-                    MaterialNumbersMod.Settings.SelectedCategoryDefNames.Clear();
-                    MaterialNumbersMod.SaveSettings();
-                })
-            };
-
-            IEnumerable<StuffCategoryDef> categories = catalog.Materials
-                .Where(material => material.stuffProps?.categories != null)
-                .SelectMany(material => material.stuffProps.categories)
-                .Where(category => category != null)
-                .GroupBy(category => category.defName)
-                .Select(group => group.First())
-                .OrderBy(category => category.LabelCap.ToString());
-            foreach (StuffCategoryDef category in categories)
-            {
-                StuffCategoryDef captured = category;
-                bool selected = MaterialNumbersMod.Settings.SelectedCategoryDefNames.Contains(category.defName);
-                options.Add(new FloatMenuOption((selected ? "[x] " : "[ ] ") + category.LabelCap, () => ToggleCategory(captured)));
+                MaterialGroupFilter captured = filter;
+                bool selected = MaterialNumbersMod.Settings.GroupFilter == filter;
+                options.Add(new FloatMenuOption((selected ? "[x] " : "[ ] ") + GroupLabel(filter), () => SelectGroupFilter(captured)));
             }
 
             Find.WindowStack.Add(new FloatMenu(options));
         }
 
-        private static void ToggleCategory(StuffCategoryDef category)
+        private static void SelectGroupFilter(MaterialGroupFilter filter)
         {
-            List<string> selected = MaterialNumbersMod.Settings.SelectedCategoryDefNames;
-            if (!selected.Remove(category.defName))
-            {
-                selected.Add(category.defName);
-            }
-
+            MaterialNumbersMod.Settings.GroupFilter = filter;
             MaterialNumbersMod.SaveSettings();
+        }
+
+        private static string GroupLabel(MaterialGroupFilter filter)
+        {
+            switch (filter)
+            {
+                case MaterialGroupFilter.All:
+                    return "MaterialNumbers.Filter.Group.All".Translate();
+                case MaterialGroupFilter.Metal:
+                    return "MaterialNumbers.Filter.Group.Metal".Translate();
+                case MaterialGroupFilter.Stone:
+                    return "MaterialNumbers.Filter.Group.Stone".Translate();
+                case MaterialGroupFilter.Wood:
+                    return "MaterialNumbers.Filter.Group.Wood".Translate();
+                case MaterialGroupFilter.TextileLeather:
+                    return "MaterialNumbers.Filter.Group.TextileLeather".Translate();
+                case MaterialGroupFilter.PlasticGlass:
+                    return "MaterialNumbers.Filter.Group.PlasticGlass".Translate();
+                case MaterialGroupFilter.Other:
+                    return "MaterialNumbers.Filter.Group.Other".Translate();
+                default:
+                    return "MaterialNumbers.Filter.Group.Common".Translate();
+            }
         }
 
         private void RefreshMapCounts(bool force)

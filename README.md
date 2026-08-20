@@ -1,5 +1,7 @@
 # Material Numbers
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 Material Numbers is a RimWorld 1.6 material comparison tab with configurable columns and global named presets.
 
 ## Features

@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+![Material Numbers preview](About/Preview.png)
+
 Material Numbers is a RimWorld 1.6 material comparison mod inspired by the complementary ideas behind [Stuff List (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2798767227) and [Numbers](https://steamcommunity.com/sharedfiles/filedetails/?id=1414302321). It gathers loaded materials into one place like Stuff List, while offering Numbers-style column selection, sorting, layout customization, and saved presets. It is an independent implementation and does not require either mod.
 
 ## Design references

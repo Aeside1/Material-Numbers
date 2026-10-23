@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+![Material Numbers 预览](About/Preview.zh-CN.png)
+
 Material Numbers 是一款面向 RimWorld 1.6 的材料对比 Mod，设计思路参考并结合了 [Stuff List (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2798767227) 和 [Numbers](https://steamcommunity.com/sharedfiles/filedetails/?id=1414302321)：它像 Stuff List 一样集中列出游戏及其他 Mod 已加载的材料，又像 Numbers 一样允许玩家自由选择属性列、排序数据、调整表格布局并保存预设。Material Numbers 是独立实现，不需要安装这两个 Mod。
 
 ## 设计参考

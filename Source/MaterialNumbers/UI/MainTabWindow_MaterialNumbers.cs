@@ -6,6 +6,7 @@ using MaterialNumbers.Presets;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace MaterialNumbers.UI
 {
@@ -16,6 +17,7 @@ namespace MaterialNumbers.UI
         private const float RowHeight = 34f;
         private const float NameColumnWidth = 230f;
         private const float ResizeHandleWidth = 7f;
+        private static readonly Color LinkColor = new Color(0.68f, 0.82f, 1f);
 
         private readonly MapMaterialCounts mapCounts = new MapMaterialCounts();
         private MaterialColumnCatalog catalog;
@@ -333,6 +335,8 @@ namespace MaterialNumbers.UI
         private void DrawNameRows(Rect rect, List<MaterialRow> rows)
         {
             GUI.BeginGroup(rect);
+            bool showInfoButton = MaterialNumbersMod.Settings.ShowRowInfoButton;
+            float infoButtonSize = Widgets.InfoCardButtonSize;
             for (int index = 0; index < rows.Count; index++)
             {
                 float y = index * RowHeight - tableScroll.y;
@@ -341,17 +345,69 @@ namespace MaterialNumbers.UI
                     continue;
                 }
 
+                ThingDef material = rows[index].Material;
                 Rect rowRect = new Rect(0f, y, rect.width, RowHeight);
                 DrawRowBackground(rowRect, index);
                 Rect iconRect = new Rect(5f, y + 4f, 26f, 26f);
-                Widgets.ThingIcon(iconRect, rows[index].Material);
-                Text.Anchor = TextAnchor.MiddleLeft;
-                Widgets.Label(new Rect(37f, y, rect.width - 42f, RowHeight), rows[index].Material.LabelCap);
-                Text.Anchor = TextAnchor.UpperLeft;
-                TooltipHandler.TipRegion(rowRect, BuildMaterialTip(rows[index].Material));
+                if (Mouse.IsOver(iconRect))
+                {
+                    Widgets.DrawHighlight(iconRect);
+                    MouseoverSounds.DoRegion(iconRect);
+                }
+
+                Widgets.ThingIcon(iconRect, material);
+                if (Widgets.ButtonInvisible(iconRect))
+                {
+                    OpenInfoCard(material);
+                }
+                TooltipHandler.TipRegion(rowRect, BuildMaterialTip(material));
+                float labelRight = showInfoButton
+                    ? rect.width - infoButtonSize - 8f
+                    : rect.width - 6f;
+                DrawMaterialHyperlink(new Rect(37f, y, Math.Max(48f, labelRight - 37f), RowHeight), material);
+                if (showInfoButton)
+                {
+                    Widgets.InfoCardButton(
+                        new Rect(rect.width - infoButtonSize - 4f, y + (RowHeight - infoButtonSize) / 2f, infoButtonSize, infoButtonSize),
+                        material);
+                }
             }
 
             GUI.EndGroup();
+        }
+
+        private static void DrawMaterialHyperlink(Rect rect, ThingDef material)
+        {
+            bool hovered = Mouse.IsOver(rect);
+            if (hovered)
+            {
+                Widgets.DrawHighlight(rect);
+            }
+
+            Color previousColor = GUI.color;
+            GUI.color = hovered ? GenUI.MouseoverColor : LinkColor;
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(rect, material.LabelCap);
+            Text.Anchor = TextAnchor.UpperLeft;
+            GUI.color = previousColor;
+
+            MouseoverSounds.DoRegion(rect);
+            if (Widgets.ButtonInvisible(rect))
+            {
+                OpenInfoCard(material);
+            }
+
+            TooltipHandler.TipRegion(rect, BuildMaterialLinkTip(material));
+        }
+
+        private static void OpenInfoCard(ThingDef material)
+        {
+            if (material == null)
+            {
+                return;
+            }
+
+            Find.WindowStack.Add(new Dialog_InfoCard(material));
         }
 
         private void DrawDataRows(List<MaterialRow> rows, List<PresetColumnState> states, float contentWidth)
@@ -837,6 +893,11 @@ namespace MaterialNumbers.UI
             return material.description + "\n\n" +
                    material.defName + "\n" +
                    "MaterialNumbers.Tooltip.Source".Translate(material.modContentPack?.Name ?? "RimWorld");
+        }
+
+        private static string BuildMaterialLinkTip(ThingDef material)
+        {
+            return "MaterialNumbers.Tooltip.MaterialLink".Translate() + "\n\n" + BuildMaterialTip(material);
         }
     }
 }

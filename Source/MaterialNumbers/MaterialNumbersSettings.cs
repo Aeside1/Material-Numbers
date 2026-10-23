@@ -38,6 +38,8 @@ namespace MaterialNumbers
 
         public MaterialGroupFilter GroupFilter = MaterialGroupFilter.Common;
 
+        public bool ShowRowInfoButton = true;
+
         private List<string> legacySelectedCategoryDefNames;
 
         public override void ExposeData()
@@ -47,6 +49,7 @@ namespace MaterialNumbers
             Scribe_Collections.Look(ref UserPresets, "userPresets", LookMode.Deep);
             Scribe_Values.Look(ref AvailabilityMode, "availabilityMode", MaterialAvailabilityMode.AllLoaded);
             Scribe_Values.Look(ref GroupFilter, "groupFilter", MaterialGroupFilter.Common);
+            Scribe_Values.Look(ref ShowRowInfoButton, "showRowInfoButton", true);
             Scribe_Collections.Look(ref legacySelectedCategoryDefNames, "selectedCategoryDefNames", LookMode.Value);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

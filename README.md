@@ -19,7 +19,8 @@ Material Numbers applies those ideas specifically to material management and ind
 2. Choose a built-in preset such as Construction, Armor and Apparel, or Gathering and Production.
 3. Narrow the table by material group and inventory scope, for example Metals + On map.
 4. Use **Columns** to choose properties. Click a header to sort; drag headers to reorder or resize them.
-5. Save the result. Changes to a built-in preset are saved as a new global custom preset.
+5. Click an item name, its icon, or the row info button to open that item's RimWorld info card.
+6. Save the result. Changes to a built-in preset are saved as a new global custom preset.
 
 Column markers `=`, `×`, and `+` identify base values, material factors, and material offsets.
 
@@ -31,6 +32,7 @@ Column markers `=`, `×`, and `+` identify base values, material factors, and ma
 - Safely discovers direct `IEnumerable<StatModifier>` and `IDictionary<StatDef, float>` containers on mod extensions.
 - Recognizes `SurvivalToolsLite.StuffPropsTool.toolStatFactors` without a hard dependency and groups those columns as tool stats.
 - Supports searchable columns, horizontal and vertical scrolling, sorting, column removal, drag reordering, and width adjustment.
+- Opens the RimWorld info card straight from the table: item names are clickable links, and every row also offers an info button that mod settings can hide.
 - Filters by compact material groups, current map availability, or valid storage. The default Common materials view excludes unclassified stuff-like definitions; All definitions remains available for troubleshooting unusual mods.
 - Provides seven built-in layouts for overview, construction, armor/apparel, gathering/production, weapon crafting, comfort/rest, and trade/stock, plus global user presets.
 

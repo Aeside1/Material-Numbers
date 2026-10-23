@@ -3,6 +3,8 @@
   <MaterialNumbers.Title>Material Numbers</MaterialNumbers.Title>
   <MaterialNumbers.Settings.Description>Material Numbers presets are global and available in every save. Preset management is available from the Materials main tab.</MaterialNumbers.Settings.Description>
   <MaterialNumbers.Settings.ResetFilters>Reset material filters</MaterialNumbers.Settings.ResetFilters>
+  <MaterialNumbers.Settings.ShowRowInfoButton>Show an info button on every row</MaterialNumbers.Settings.ShowRowInfoButton>
+  <MaterialNumbers.Settings.ShowRowInfoButton.Description>Displays an "i" info button next to each item name. Turning this off still leaves the item name clickable for the info card.</MaterialNumbers.Settings.ShowRowInfoButton.Description>
 
   <MaterialNumbers.Group.Basic>Basic information</MaterialNumbers.Group.Basic>
   <MaterialNumbers.Group.BaseStats>Base stats</MaterialNumbers.Group.BaseStats>
@@ -63,6 +65,7 @@
   <MaterialNumbers.Tooltip.Value>Value: {0}</MaterialNumbers.Tooltip.Value>
   <MaterialNumbers.Tooltip.Status>Status: {0}</MaterialNumbers.Tooltip.Status>
   <MaterialNumbers.Tooltip.HeaderActions>Click to sort. Drag to reorder. Drag the right edge to resize. Right-click to remove.</MaterialNumbers.Tooltip.HeaderActions>
+  <MaterialNumbers.Tooltip.MaterialLink>Click the item name or its info button to open the info card.</MaterialNumbers.Tooltip.MaterialLink>
 
   <MaterialNumbers.Dialog.SaveAs>Save preset as</MaterialNumbers.Dialog.SaveAs>
   <MaterialNumbers.Dialog.Rename>Rename preset</MaterialNumbers.Dialog.Rename>

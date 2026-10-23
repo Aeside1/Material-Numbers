@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Verse;
@@ -31,26 +30,7 @@ namespace MaterialNumbers.Core
             var rows = new List<MaterialRow>(catalog.Materials.Count);
             foreach (ThingDef material in catalog.Materials)
             {
-                var cells = new Dictionary<string, MaterialCellValue>(StringComparer.Ordinal);
-                foreach (MaterialColumnDefinition column in catalog.Columns)
-                {
-                    if (column.Id == MaterialColumnIds.Amount)
-                    {
-                        continue;
-                    }
-
-                    try
-                    {
-                        cells[column.Id] = column.Read(material);
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Warning("[Material Numbers] Failed to read " + column.Id + " for " + material.defName + ": " + exception.Message);
-                        cells[column.Id] = MaterialCellValue.Missing;
-                    }
-                }
-
-                rows.Add(new MaterialRow(material, new ReadOnlyDictionary<string, MaterialCellValue>(cells)));
+                rows.Add(new MaterialRow(material, catalog.Columns));
             }
 
             return new MaterialDataset(new ReadOnlyCollection<MaterialRow>(rows));

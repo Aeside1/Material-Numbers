@@ -38,6 +38,9 @@ namespace MaterialNumbers
 
         public MaterialGroupFilter GroupFilter = MaterialGroupFilter.Common;
 
+        public List<string> SelectedThingCategoryDefNames = new List<string>();
+
+
         private List<string> legacySelectedCategoryDefNames;
 
         public override void ExposeData()
@@ -47,6 +50,7 @@ namespace MaterialNumbers
             Scribe_Collections.Look(ref UserPresets, "userPresets", LookMode.Deep);
             Scribe_Values.Look(ref AvailabilityMode, "availabilityMode", MaterialAvailabilityMode.AllLoaded);
             Scribe_Values.Look(ref GroupFilter, "groupFilter", MaterialGroupFilter.Common);
+            Scribe_Collections.Look(ref SelectedThingCategoryDefNames, "selectedThingCategoryDefNames", LookMode.Value);
             Scribe_Collections.Look(ref legacySelectedCategoryDefNames, "selectedCategoryDefNames", LookMode.Value);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -68,6 +72,11 @@ namespace MaterialNumbers
             {
                 GroupFilter = MaterialGroupFilter.Common;
             }
+
+            SelectedThingCategoryDefNames = SelectedThingCategoryDefNames?
+                .Where(defName => !string.IsNullOrWhiteSpace(defName))
+                .Distinct(StringComparer.Ordinal)
+                .ToList() ?? new List<string>();
         }
 
         private void MigrateLegacyCategoryFilter()

@@ -32,7 +32,7 @@ namespace MaterialNumbers.Core
         public static MaterialColumnCatalog Build()
         {
             List<ThingDef> materials = DefDatabase<ThingDef>.AllDefsListForReading
-                .Where(definition => definition.IsStuff)
+                .Where(definition => definition != null && !string.IsNullOrWhiteSpace(definition.defName))
                 .OrderBy(definition => definition.LabelCap.ToString())
                 .ToList();
 

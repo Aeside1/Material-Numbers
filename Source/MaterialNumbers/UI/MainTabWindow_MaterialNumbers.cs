@@ -32,6 +32,15 @@ namespace MaterialNumbers.UI
         private float resizeStartX;
         private float resizeStartWidth;
         private bool headerDragged;
+        private List<MaterialRow> filteredRows = new List<MaterialRow>();
+        private bool filteredRowsDirty = true;
+        private bool filterCacheInitialized;
+        private string cachedSearch;
+        private string cachedTypeFilter;
+        private string cachedSortColumnId;
+        private bool cachedSortAscending;
+        private MaterialGroupFilter cachedGroupFilter;
+        private MaterialAvailabilityMode cachedAvailabilityMode;
 
         public MainTabWindow_MaterialNumbers()
         {
@@ -66,6 +75,7 @@ namespace MaterialNumbers.UI
             catalog = MaterialColumnCatalog.Build();
             dataset = MaterialDataset.Build(catalog);
             catalogDirty = false;
+            filteredRowsDirty = true;
             if (workingPreset != null)
             {
                 tableScroll = Vector2.zero;
@@ -129,6 +139,12 @@ namespace MaterialNumbers.UI
             if (Widgets.ButtonText(new Rect(x, y, 190f, 30f), GroupButtonLabel()))
             {
                 OpenGroupMenu();
+            }
+
+            x += 204f;
+            if (Widgets.ButtonText(new Rect(x, y, 190f, 30f), DefinitionTypeButtonLabel()))
+            {
+                OpenDefinitionTypeMenu();
             }
 
             x += 204f;
@@ -354,6 +370,7 @@ namespace MaterialNumbers.UI
             GUI.EndGroup();
         }
 
+
         private void DrawDataRows(List<MaterialRow> rows, List<PresetColumnState> states, float contentWidth)
         {
             for (int rowIndex = 0; rowIndex < rows.Count; rowIndex++)
@@ -404,13 +421,37 @@ namespace MaterialNumbers.UI
         private List<MaterialRow> FilterAndSortRows()
         {
             string term = search.Trim();
+            string typeFilter = string.Join(",", MaterialNumbersMod.Settings.SelectedThingCategoryDefNames.OrderBy(value => value, StringComparer.Ordinal));
+            string sortColumnId = workingPreset?.SortColumnId;
+            bool sortAscending = workingPreset?.SortAscending ?? false;
+            if (!filteredRowsDirty && filterCacheInitialized &&
+                string.Equals(cachedSearch, term, StringComparison.Ordinal) &&
+                string.Equals(cachedTypeFilter, typeFilter, StringComparison.Ordinal) &&
+                string.Equals(cachedSortColumnId, sortColumnId, StringComparison.Ordinal) &&
+                cachedSortAscending == sortAscending &&
+                cachedGroupFilter == MaterialNumbersMod.Settings.GroupFilter &&
+                cachedAvailabilityMode == MaterialNumbersMod.Settings.AvailabilityMode)
+            {
+                return filteredRows;
+            }
+
             List<MaterialRow> rows = dataset.Rows.Where(row =>
                     MatchesSearch(row.Material, term) &&
                     MatchesGroup(row.Material, MaterialNumbersMod.Settings.GroupFilter) &&
+                    MatchesDefinitionTypes(row.Material, MaterialNumbersMod.Settings.SelectedThingCategoryDefNames) &&
                     MatchesAvailability(row.Material))
                 .ToList();
             rows.Sort(CompareRows);
-            return rows;
+            filteredRows = rows;
+            filteredRowsDirty = false;
+            filterCacheInitialized = true;
+            cachedSearch = term;
+            cachedTypeFilter = typeFilter;
+            cachedSortColumnId = sortColumnId;
+            cachedSortAscending = sortAscending;
+            cachedGroupFilter = MaterialNumbersMod.Settings.GroupFilter;
+            cachedAvailabilityMode = MaterialNumbersMod.Settings.AvailabilityMode;
+            return filteredRows;
         }
 
         private static bool MatchesSearch(ThingDef material, string term)
@@ -423,6 +464,34 @@ namespace MaterialNumbers.UI
             return Contains(material.LabelCap.ToString(), term) ||
                    Contains(material.defName, term) ||
                    Contains(material.modContentPack?.Name, term);
+        }
+
+        private static bool MatchesDefinitionTypes(ThingDef definition, IReadOnlyCollection<string> selectedTypes)
+        {
+            if (selectedTypes == null || selectedTypes.Count == 0)
+            {
+                return true;
+            }
+
+            return definition.thingCategories != null &&
+                   definition.thingCategories.Any(category =>
+                       category != null && HasSelectedCategory(category, selectedTypes));
+        }
+
+        private static bool HasSelectedCategory(ThingCategoryDef category, IReadOnlyCollection<string> selectedTypes)
+        {
+            ThingCategoryDef current = category;
+            while (current != null)
+            {
+                if (selectedTypes.Contains(current.defName))
+                {
+                    return true;
+                }
+
+                current = current.parent;
+            }
+
+            return false;
         }
 
         private static bool MatchesGroup(ThingDef material, MaterialGroupFilter filter)
@@ -753,6 +822,49 @@ namespace MaterialNumbers.UI
             return GroupLabel(MaterialNumbersMod.Settings.GroupFilter);
         }
 
+        private string DefinitionTypeButtonLabel()
+        {
+            int count = MaterialNumbersMod.Settings.SelectedThingCategoryDefNames.Count;
+            return count == 0
+                ? "MaterialNumbers.Filter.DefinitionTypesAll".Translate()
+                : "MaterialNumbers.Filter.DefinitionTypesCount".Translate(count);
+        }
+
+        private void OpenDefinitionTypeMenu()
+        {
+            List<ThingCategoryDef> categories = catalog.Materials
+                .Where(definition => definition.thingCategories != null)
+                .SelectMany(definition => definition.thingCategories)
+                .Where(category => category != null)
+                .SelectMany(WithAncestors)
+                .GroupBy(category => category.defName)
+                .Select(group => group.First())
+                .ToList();
+            Find.WindowStack.Add(new Dialog_ThingCategoryPicker(
+                categories,
+                MaterialNumbersMod.Settings.SelectedThingCategoryDefNames,
+                selected =>
+                {
+                    MaterialNumbersMod.Settings.SelectedThingCategoryDefNames = selected.ToList();
+                    if (selected.Count > 0 && MaterialNumbersMod.Settings.GroupFilter == MaterialGroupFilter.Common)
+                    {
+                        MaterialNumbersMod.Settings.GroupFilter = MaterialGroupFilter.All;
+                    }
+
+                    MaterialNumbersMod.SaveSettings();
+                }));
+        }
+
+        private static IEnumerable<ThingCategoryDef> WithAncestors(ThingCategoryDef category)
+        {
+            ThingCategoryDef current = category;
+            while (current != null)
+            {
+                yield return current;
+                current = current.parent;
+            }
+        }
+
         private void OpenGroupMenu()
         {
             var options = new List<FloatMenuOption>();
@@ -803,6 +915,7 @@ namespace MaterialNumbers.UI
             }
 
             mapCounts.Refresh(Find.CurrentMap);
+            filteredRowsDirty = true;
             lastCountRefreshFrame = Time.frameCount;
         }
 

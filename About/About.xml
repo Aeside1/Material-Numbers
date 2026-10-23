@@ -15,8 +15,8 @@
 • 自动发现游戏及其他 Mod 提供的材料定义与可读取属性。
 • 自由选择、拖动和缩放列，并保存为全局自定义预设。
 • 使用“=、×、+”区分基础值、材料倍率和材料加成。
-• 提供概览、建造、护甲与衣物、采集与生产、舒适与睡眠、交易与库存六套内置预设。
-• 可按材料大类、当前地图或当前储存区筛选，并支持名称搜索与列排序。
+• 提供概览、建造、护甲与衣物、采集与生产、武器制作、舒适与睡眠、交易与库存七套内置预设。
+• 可按材料大类、物品类型、当前地图或当前储存区筛选，并支持名称搜索与列排序。
 • 可识别 Survival Tools Lite 工具属性，不强制依赖 Harmony、HSK 或其他 Mod。
 
 【English】
@@ -28,7 +28,7 @@ Features:
 • Automatically discovers material definitions and readable stats supplied by the game and other mods.
 • Choose, reorder, and resize columns, then save layouts as global custom presets.
 • Distinguishes base values, material factors, and material offsets with “=”, “×”, and “+”.
-• Includes six built-in presets: Overview, Construction, Armor and Apparel, Gathering and Production, Comfort and Rest, and Trade and Stock.
-• Filters by broad material group, current map, or current storage, with material search and column sorting.
+• Includes seven built-in presets: Overview, Construction, Armor and Apparel, Gathering and Production, Weapon Crafting, Comfort and Rest, and Trade and Stock.
+• Filters by broad material group, item type, current map, or current storage, with material search and column sorting.
 • Recognizes Survival Tools Lite tool stats without requiring Harmony, HSK, or any other mod.</description>
 </ModMetaData>

@@ -15,7 +15,7 @@ Material Numbers applies those ideas specifically to material management and ind
 
 1. Open the **Materials** main tab.
 2. Choose a built-in preset such as Construction, Armor and Apparel, or Gathering and Production.
-3. Narrow the table by material group and inventory scope, for example Metals + On map.
+3. Narrow the table by material group, item type, and inventory scope, for example All definitions + Food + On map.
 4. Use **Columns** to choose properties. Click a header to sort; drag headers to reorder or resize them.
 5. Save the result. Changes to a built-in preset are saved as a new global custom preset.
 
@@ -23,13 +23,13 @@ Column markers `=`, `×`, and `+` identify base values, material factors, and ma
 
 ## Features
 
-- Discovers every loaded `ThingDef` where `IsStuff` is true.
-- Builds columns from material base stats, factors, and offsets.
+- Discovers every loaded `ThingDef` and provides dynamic item-type filtering.
+- Builds columns from base stats, material factors, and offsets.
 - Marks base, factor, and offset columns with `=`, `×`, and `+`, respectively, and formats every factor as a percentage.
 - Safely discovers direct `IEnumerable<StatModifier>` and `IDictionary<StatDef, float>` containers on mod extensions.
 - Recognizes `SurvivalToolsLite.StuffPropsTool.toolStatFactors` without a hard dependency and groups those columns as tool stats.
 - Supports searchable columns, horizontal and vertical scrolling, sorting, column removal, drag reordering, and width adjustment.
-- Filters by compact material groups, current map availability, or valid storage. The default Common materials view excludes unclassified stuff-like definitions; All definitions remains available for troubleshooting unusual mods.
+- Filters by compact material groups, item types, current map availability, or valid storage. The default Common materials view excludes unclassified definitions; selecting an item type automatically switches to All definitions.
 - Provides seven built-in layouts for overview, construction, armor/apparel, gathering/production, weapon crafting, comfort/rest, and trade/stock, plus global user presets.
 
 Missing factor and offset values use their neutral values (`100%` and `0`) and are shown in gray. Other missing values remain blank (`-`). Column IDs from temporarily absent mods remain in saved presets and become visible again when their source mod returns.
@@ -54,3 +54,8 @@ Other mods can implement `IMaterialColumnProvider` and call `MaterialNumbersRegi
 - Presets are global across saves.
 - No preset import/export in the first release.
 - No hard dependency on Stuff List, Numbers, Survival Tools Lite, HSK, or Harmony.
+
+## TODO
+
+- Add dedicated property providers for food, medicine, weapons, plants, and other definition types, including nutrition, medical effects, damage, and yield.
+- Add type-specific column presets on top of the generic `ThingDef` property table.

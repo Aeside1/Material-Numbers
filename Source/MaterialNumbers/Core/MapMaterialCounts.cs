@@ -30,7 +30,7 @@ namespace MaterialNumbers.Core
 
             foreach (Thing thing in map.listerThings.AllThings)
             {
-                if (thing?.def == null || !thing.def.IsStuff)
+                if (thing?.def == null)
                 {
                     continue;
                 }

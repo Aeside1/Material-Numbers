@@ -14,9 +14,9 @@
   <MaterialNumbers.ColumnMarker.Factor>×</MaterialNumbers.ColumnMarker.Factor>
   <MaterialNumbers.ColumnMarker.Offset>+</MaterialNumbers.ColumnMarker.Offset>
 
-  <MaterialNumbers.Column.Material>材料</MaterialNumbers.Column.Material>
+  <MaterialNumbers.Column.Material>物品</MaterialNumbers.Column.Material>
   <MaterialNumbers.Column.Amount>数量</MaterialNumbers.Column.Amount>
-  <MaterialNumbers.Column.Amount.Description>当前地图上已生成的该材料总数。</MaterialNumbers.Column.Amount.Description>
+  <MaterialNumbers.Column.Amount.Description>当前地图上已生成的该物品总数。</MaterialNumbers.Column.Amount.Description>
   <MaterialNumbers.Column.StackLimit>堆叠上限</MaterialNumbers.Column.StackLimit>
   <MaterialNumbers.Column.StackLimit.Description>单个物品堆所能容纳的最大数量。</MaterialNumbers.Column.StackLimit.Description>
   <MaterialNumbers.Column.SourceMod>来源 Mod</MaterialNumbers.Column.SourceMod>
@@ -43,7 +43,7 @@
   <MaterialNumbers.Columns.SearchTip>可按本地化名称、统计 defName、来源 Mod 或列分组搜索。</MaterialNumbers.Columns.SearchTip>
   <MaterialNumbers.Columns.Selected>已选择 {0}/{1} 列</MaterialNumbers.Columns.Selected>
 
-  <MaterialNumbers.Filter.SearchTip>按材料名称、defName 或来源 Mod 搜索。</MaterialNumbers.Filter.SearchTip>
+  <MaterialNumbers.Filter.SearchTip>按物品名称、defName 或来源 Mod 搜索。</MaterialNumbers.Filter.SearchTip>
   <MaterialNumbers.Filter.Group.Common>常用材料</MaterialNumbers.Filter.Group.Common>
   <MaterialNumbers.Filter.Group.All>全部定义</MaterialNumbers.Filter.Group.All>
   <MaterialNumbers.Filter.Group.Metal>金属</MaterialNumbers.Filter.Group.Metal>
@@ -52,6 +52,12 @@
   <MaterialNumbers.Filter.Group.TextileLeather>织物与皮革</MaterialNumbers.Filter.Group.TextileLeather>
   <MaterialNumbers.Filter.Group.PlasticGlass>塑料与玻璃</MaterialNumbers.Filter.Group.PlasticGlass>
   <MaterialNumbers.Filter.Group.Other>其他定义</MaterialNumbers.Filter.Group.Other>
+  <MaterialNumbers.Filter.DefinitionTypesAll>全部物品类型</MaterialNumbers.Filter.DefinitionTypesAll>
+  <MaterialNumbers.Filter.DefinitionTypesCount>物品类型（已选 {0}）</MaterialNumbers.Filter.DefinitionTypesCount>
+  <MaterialNumbers.Filter.DefinitionTypesTitle>选择物品类型</MaterialNumbers.Filter.DefinitionTypesTitle>
+  <MaterialNumbers.Filter.DefinitionTypesSearchTip>按分类名称或 defName 搜索；未搜索时可逐层浏览分类。</MaterialNumbers.Filter.DefinitionTypesSearchTip>
+  <MaterialNumbers.Filter.DefinitionTypesSelected>已选择 {0} 个分类</MaterialNumbers.Filter.DefinitionTypesSelected>
+  <MaterialNumbers.Filter.DefinitionTypesRoot>全部分类</MaterialNumbers.Filter.DefinitionTypesRoot>
   <MaterialNumbers.Filter.AllLoaded>全部已加载</MaterialNumbers.Filter.AllLoaded>
   <MaterialNumbers.Filter.CurrentMap>当前地图</MaterialNumbers.Filter.CurrentMap>
   <MaterialNumbers.Filter.CurrentStorage>当前储存区</MaterialNumbers.Filter.CurrentStorage>

@@ -14,7 +14,7 @@
   <MaterialNumbers.ColumnMarker.Factor>×</MaterialNumbers.ColumnMarker.Factor>
   <MaterialNumbers.ColumnMarker.Offset>+</MaterialNumbers.ColumnMarker.Offset>
 
-  <MaterialNumbers.Column.Material>Material</MaterialNumbers.Column.Material>
+  <MaterialNumbers.Column.Material>Item</MaterialNumbers.Column.Material>
   <MaterialNumbers.Column.Amount>Amount</MaterialNumbers.Column.Amount>
   <MaterialNumbers.Column.Amount.Description>Total amount currently spawned on this map.</MaterialNumbers.Column.Amount.Description>
   <MaterialNumbers.Column.StackLimit>Stack limit</MaterialNumbers.Column.StackLimit>
@@ -43,7 +43,7 @@
   <MaterialNumbers.Columns.SearchTip>Search by localized name, stat defName, source mod, or column group.</MaterialNumbers.Columns.SearchTip>
   <MaterialNumbers.Columns.Selected>{0} of {1} columns selected</MaterialNumbers.Columns.Selected>
 
-  <MaterialNumbers.Filter.SearchTip>Search materials by name, defName, or source mod.</MaterialNumbers.Filter.SearchTip>
+  <MaterialNumbers.Filter.SearchTip>Search items by name, defName, or source mod.</MaterialNumbers.Filter.SearchTip>
   <MaterialNumbers.Filter.Group.Common>Common materials</MaterialNumbers.Filter.Group.Common>
   <MaterialNumbers.Filter.Group.All>All definitions</MaterialNumbers.Filter.Group.All>
   <MaterialNumbers.Filter.Group.Metal>Metals</MaterialNumbers.Filter.Group.Metal>
@@ -52,6 +52,12 @@
   <MaterialNumbers.Filter.Group.TextileLeather>Textiles and leather</MaterialNumbers.Filter.Group.TextileLeather>
   <MaterialNumbers.Filter.Group.PlasticGlass>Plastics and glass</MaterialNumbers.Filter.Group.PlasticGlass>
   <MaterialNumbers.Filter.Group.Other>Other definitions</MaterialNumbers.Filter.Group.Other>
+  <MaterialNumbers.Filter.DefinitionTypesAll>All item types</MaterialNumbers.Filter.DefinitionTypesAll>
+  <MaterialNumbers.Filter.DefinitionTypesCount>Item types ({0} selected)</MaterialNumbers.Filter.DefinitionTypesCount>
+  <MaterialNumbers.Filter.DefinitionTypesTitle>Select item types</MaterialNumbers.Filter.DefinitionTypesTitle>
+  <MaterialNumbers.Filter.DefinitionTypesSearchTip>Search by category name or defName; browse the hierarchy when the search is empty.</MaterialNumbers.Filter.DefinitionTypesSearchTip>
+  <MaterialNumbers.Filter.DefinitionTypesSelected>{0} categories selected</MaterialNumbers.Filter.DefinitionTypesSelected>
+  <MaterialNumbers.Filter.DefinitionTypesRoot>All categories</MaterialNumbers.Filter.DefinitionTypesRoot>
   <MaterialNumbers.Filter.AllLoaded>All loaded</MaterialNumbers.Filter.AllLoaded>
   <MaterialNumbers.Filter.CurrentMap>On map</MaterialNumbers.Filter.CurrentMap>
   <MaterialNumbers.Filter.CurrentStorage>In storage</MaterialNumbers.Filter.CurrentStorage>

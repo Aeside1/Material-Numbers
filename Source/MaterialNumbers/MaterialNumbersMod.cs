@@ -33,6 +33,7 @@ namespace MaterialNumbers
             {
                 Settings.AvailabilityMode = MaterialAvailabilityMode.AllLoaded;
                 Settings.GroupFilter = MaterialGroupFilter.Common;
+                Settings.SelectedThingCategoryDefNames.Clear();
                 WriteSettings();
             }
 

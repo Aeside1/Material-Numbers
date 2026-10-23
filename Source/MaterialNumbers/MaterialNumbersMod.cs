@@ -29,6 +29,11 @@ namespace MaterialNumbers
             listing.Begin(inRect);
             listing.Label("MaterialNumbers.Settings.Description".Translate());
             listing.Gap();
+            listing.CheckboxLabeled(
+                "MaterialNumbers.Settings.ShowRowInfoButton".Translate(),
+                ref Settings.ShowRowInfoButton,
+                "MaterialNumbers.Settings.ShowRowInfoButton.Description".Translate());
+            listing.Gap();
             if (listing.ButtonText("MaterialNumbers.Settings.ResetFilters".Translate()))
             {
                 Settings.AvailabilityMode = MaterialAvailabilityMode.AllLoaded;

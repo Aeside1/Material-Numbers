@@ -3,6 +3,8 @@
   <MaterialNumbers.Title>材料数值</MaterialNumbers.Title>
   <MaterialNumbers.Settings.Description>材料数值的预设为全局设置，可在所有存档中使用。请在“材料”主标签内管理预设。</MaterialNumbers.Settings.Description>
   <MaterialNumbers.Settings.ResetFilters>重置材料筛选</MaterialNumbers.Settings.ResetFilters>
+  <MaterialNumbers.Settings.ShowRowInfoButton>在每行显示信息按钮</MaterialNumbers.Settings.ShowRowInfoButton>
+  <MaterialNumbers.Settings.ShowRowInfoButton.Description>在每行名称右侧显示“i”信息按钮；关闭后仍可点击物品名称打开信息卡。</MaterialNumbers.Settings.ShowRowInfoButton.Description>
 
   <MaterialNumbers.Group.Basic>基础信息</MaterialNumbers.Group.Basic>
   <MaterialNumbers.Group.BaseStats>基础统计</MaterialNumbers.Group.BaseStats>
@@ -63,6 +65,7 @@
   <MaterialNumbers.Tooltip.Value>数值：{0}</MaterialNumbers.Tooltip.Value>
   <MaterialNumbers.Tooltip.Status>状态：{0}</MaterialNumbers.Tooltip.Status>
   <MaterialNumbers.Tooltip.HeaderActions>单击排序；拖动调整顺序；拖动右边缘调整宽度；右键移除。</MaterialNumbers.Tooltip.HeaderActions>
+  <MaterialNumbers.Tooltip.MaterialLink>单击物品名称或行内信息按钮可打开该物品的信息卡。</MaterialNumbers.Tooltip.MaterialLink>
 
   <MaterialNumbers.Dialog.SaveAs>预设另存为</MaterialNumbers.Dialog.SaveAs>
   <MaterialNumbers.Dialog.Rename>重命名预设</MaterialNumbers.Dialog.Rename>

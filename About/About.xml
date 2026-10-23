@@ -17,6 +17,7 @@
 • 使用“=、×、+”区分基础值、材料倍率和材料加成。
 • 提供概览、建造、护甲与衣物、采集与生产、舒适与睡眠、交易与库存六套内置预设。
 • 可按材料大类、当前地图或当前储存区筛选，并支持名称搜索与列排序。
+• 点击物品名称或图标打开游戏信息卡，每行右侧另提供可在 Mod 设置中关闭的 info 按钮。
 • 可识别 Survival Tools Lite 工具属性，不强制依赖 Harmony、HSK 或其他 Mod。
 
 【English】
@@ -30,5 +31,6 @@ Features:
 • Distinguishes base values, material factors, and material offsets with “=”, “×”, and “+”.
 • Includes six built-in presets: Overview, Construction, Armor and Apparel, Gathering and Production, Comfort and Rest, and Trade and Stock.
 • Filters by broad material group, current map, or current storage, with material search and column sorting.
+• Opens the game info card from item names or icons, plus a per-row info button that can be hidden in mod settings.
 • Recognizes Survival Tools Lite tool stats without requiring Harmony, HSK, or any other mod.</description>
 </ModMetaData>
